@@ -1,0 +1,10 @@
+.actions-validate-ajax-button .message-validation {
+	display:inline-block;
+	margin-left:10px;
+} 
+.actions-validate-ajax-button .error {
+	color:red;
+} 
+.actions-validate-ajax-button .success {
+	color:green;
+} 
