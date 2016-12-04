@@ -112,6 +112,11 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
             'adminhtml_ajax_button_params',
             ['params' => $this->_buttonParams, 'label' => $this->_buttonLabel]
         ); 
+        $this->_eventManager->dispatch(
+            'adminhtml_ajax_button_params_' . $this->getHtmlId(),
+            ['params' => $this->_buttonParams, 'label' => $this->_buttonLabel]
+        );         
+        
         return $this->_buttonParams;
     }    
 }

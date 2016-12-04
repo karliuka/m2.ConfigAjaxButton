@@ -52,14 +52,21 @@ class Button extends \Faonni\ConfigAjaxButton\Controller\Adminhtml\System\Config
      */
     public function execute()
     {
+        $id = $this->getRequest()->getParam('id');
         $eventResponse = new \Magento\Framework\DataObject([
             'valid'   => 0,
-            'message' => '22'
+            'message' => ''
         ]);
+        
         $this->_eventManager->dispatch(
             'adminhtml_ajax_button_response',
             ['response' => $eventResponse, 'request' => $this->getRequest()]
-        );        
+        ); 
+        $this->_eventManager->dispatch(
+            'adminhtml_ajax_button_response_' . $id,
+            ['response' => $eventResponse, 'request' => $this->getRequest()]
+        ); 
+                        
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
         $resultJson = $this->resultJsonFactory->create();
         return $resultJson->setData([
