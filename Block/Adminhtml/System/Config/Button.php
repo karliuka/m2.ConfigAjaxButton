@@ -93,6 +93,8 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
                 'button_label' => __($buttonLabel),
                 'html_id'  => $element->getHtmlId(),
                 'ajax_url' => $this->_urlBuilder->getUrl('configajaxbutton/system_config_validate/button'),
+                'js_function' => 'validateAjaxButton' . md5($element->getHtmlId()),
+                'html_result_id' => 'ajax_button_validation_result_' . md5($element->getHtmlId()),
             ]
         );
 

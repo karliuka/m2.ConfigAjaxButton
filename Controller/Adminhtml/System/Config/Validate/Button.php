@@ -54,7 +54,7 @@ class Button extends \Faonni\ConfigAjaxButton\Controller\Adminhtml\System\Config
     {
         $eventResponse = new \Magento\Framework\DataObject([
             'valid'   => 0,
-            'message' => ''
+            'message' => '22'
         ]);
         $this->_eventManager->dispatch(
             'adminhtml_ajax_button_response',

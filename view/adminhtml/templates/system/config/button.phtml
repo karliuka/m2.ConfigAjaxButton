@@ -24,11 +24,12 @@
 require(['prototype'], function(){
 
 //<![CDATA[
-    function validateAjaxButton() {
-        var validationMessage = $('ajax-button-validation-result');
+    function <?php echo $block->getJsFunction() ?>() {
+        var validationMessage = $('<?php echo $block->getHtmlResultId() ?>');
 
         params = {
 			// add custom params
+			'id' : '<?php echo $block->getHtmlId() ?>'
         };
 
         new Ajax.Request('<?php /* @escapeNotVerified */ echo $block->getAjaxUrl() ?>', {
@@ -53,14 +54,14 @@ require(['prototype'], function(){
         });
     }
 
-    window.validateAjaxButton = validateAjaxButton;
+    window.<?php echo $block->getJsFunction() ?> = <?php echo $block->getJsFunction() ?>;
 //]]>
 
 });
 </script>
 <div class="actions actions-validate-ajax-button">
-    <div id="ajax-button-validation-result" class="message-validation hidden"></div>
-    <button onclick="javascript:validateAjaxButton(); return false;" class="action-validate-ajax-button" type="button" id="<?php echo $block->getHtmlId() ?>">
+    <div id="<?php echo $block->getHtmlResultId() ?>" class="message-validation hidden"></div>
+    <button onclick="javascript:<?php echo $block->getJsFunction() ?>(); return false;" class="actions-validate-ajax-button" type="button" id="<?php echo $block->getHtmlId() ?>">
         <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
     </button>
 </div>
