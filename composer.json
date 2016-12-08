@@ -2,7 +2,7 @@
     "name": "faonni/module-configajaxbutton",
     "description": "Add ajax button in configuration section.",
     "type": "magento2-module",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"license": [
 		"OSL-3.0"
 		],
