@@ -23,22 +23,19 @@
 <?php $params = $block->getParams() ?>
 <script>
 require(['prototype'], function(){
-
 //<![CDATA[
     function <?php echo $block->getJsFunction() ?>() {
         var validationMessage = $('<?php echo $block->getHtmlResultId() ?>');
-
-        params = {
+        var params = {
 			<?php if($params) : ?>
 				// add custom params
-				<?php foreach($params as $param) : ?>
-					<?php /* @escapeNotVerified */ echo $param->getName() ?>: $('<?php /* @escapeNotVerified */ echo $param->getId() ?>').value,
+				<?php foreach($params->toArray() as $param => $element) : ?>
+					<?php /* @escapeNotVerified */ echo $param ?>: $('<?php /* @escapeNotVerified */ echo $element ?>').value,
 				<?php endforeach ?>
 			<?php endif ?>
 			// add id field
 			'id' : '<?php echo $block->getHtmlId() ?>'
         };
-
         new Ajax.Request('<?php /* @escapeNotVerified */ echo $block->getAjaxUrl() ?>', {
             parameters: params,
             onSuccess: function(response) {
@@ -60,10 +57,8 @@ require(['prototype'], function(){
             }
         });
     }
-
     window.<?php echo $block->getJsFunction() ?> = <?php echo $block->getJsFunction() ?>;
 //]]>
-
 });
 </script>
 <div class="actions actions-validate-ajax-button">

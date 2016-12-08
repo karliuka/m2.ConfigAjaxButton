@@ -21,6 +21,9 @@
  */
 namespace Faonni\ConfigAjaxButton\Block\Adminhtml\System\Config;
 
+/**
+ * Faonni config ajax button block
+ */
 class Button extends \Magento\Config\Block\System\Config\Form\Field
 {
     /**
@@ -50,6 +53,32 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
     }
 
     /**
+     * Add param to button
+     *
+     * @param string $name	 
+     * @param string $element
+     * @return \Faonni\ConfigAjaxButton\Block\Adminhtml\System\Config\Button
+     */
+    public function addParam($name, $element)
+    {
+		$this->_buttonParams->addData($name, $element);		
+        return $this;
+    }
+	
+    /**
+     * Overwrite params to button
+     *
+     * @param string|array $name	 
+     * @param string $element
+     * @return \Faonni\ConfigAjaxButton\Block\Adminhtml\System\Config\Button
+     */
+    public function setParam($name, $element=null)
+    {
+		$this->_buttonParams->setData($name, $element);		
+        return $this;
+    }
+	
+    /**
      * Set template to itself
      *
      * @return \Faonni\ConfigAjaxButton\Block\Adminhtml\System\Config\Button
@@ -61,8 +90,7 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
         if (!$this->getTemplate()) {
             $this->setTemplate('system/config/button.phtml');
         }       
-        $this->_buttonParams = new \Magento\Framework\DataObject();
-        
+        $this->_buttonParams = new \Magento\Framework\DataObject();       
         return $this;
     }
 
@@ -97,7 +125,6 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
                 'html_result_id' => 'ajax_button_validation_result_' . md5($element->getHtmlId()),
             ]
         );
-
         return $this->_toHtml();
     }
     
@@ -106,17 +133,14 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
      *
      * @return \Magento\Framework\DataObject
      */
-    protected function getParams()
+    public function getParams()
     {  
         $this->_eventManager->dispatch(
-            'adminhtml_ajax_button_params',
-            ['params' => $this->_buttonParams, 'label' => $this->_buttonLabel]
+            'adminhtml_ajax_button_params', ['button' => $this]
         ); 
         $this->_eventManager->dispatch(
-            'adminhtml_ajax_button_params_' . $this->getHtmlId(),
-            ['params' => $this->_buttonParams, 'label' => $this->_buttonLabel]
+            'adminhtml_ajax_button_params_' . $this->getHtmlId(), ['button' => $this]
         );         
-        
         return $this->_buttonParams;
     }    
 }
