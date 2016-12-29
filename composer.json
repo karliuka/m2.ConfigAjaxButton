@@ -1,5 +1,5 @@
 {
-    "name": "faonni/module-configajaxbutton",
+    "name": "faonni/module-config-ajax-button",
     "description": "Add ajax button in configuration section.",
     "type": "magento2-module",
 	"version": "2.0.4",
